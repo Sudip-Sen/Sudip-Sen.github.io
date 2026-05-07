@@ -22,46 +22,29 @@ export default function Particles() {
     // @ts-ignore
     window.particlesJS("particles-js", {
       particles: {
-        number: { value: 140, density: { enable: true, value_area: 800 } },
+        number: { value: 120, density: { enable: true, value_area: 800 } },
         color: { value: colors.particles },
-        shape: {
-          type: "circle",
-          stroke: { width: 0.5, color: colors.accent },
-        },
-        opacity: {
-          value: 0.7,
-          random: true,
-          anim: { enable: true, speed: 1, opacity_min: 0.3 },
-        },
-        size: {
-          value: 3,
-          random: true,
-          anim: { enable: true, speed: 2, size_min: 1 },
-        },
-        line_linked: {
-          enable: true,
-          distance: 160,
-          color: colors.lines,
-          opacity: 0.4,
-          width: 1.2,
-        },
-        move: { enable: true, speed: 2, random: true, out_mode: "bounce" },
+        shape: { type: "circle", stroke: { width: 0.5, color: colors.accent } },
+        opacity: { value: 0.6, random: true, anim: { enable: true, speed: 1, opacity_min: 0.2 } },
+        size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 1 } },
+        line_linked: { enable: true, distance: 150, color: colors.lines, opacity: 0.3, width: 1 },
+        move: { enable: true, speed: 1.5, random: true, out_mode: "bounce" },
       },
       interactivity: {
-        detect_on: "canvas",
+        detect_on: "window",
         events: {
           onhover: { enable: true, mode: "grab" },
           onclick: { enable: true, mode: "push" },
           resize: true,
         },
         modes: {
-          grab: { distance: 220, line_linked: { opacity: 0.8 } },
-          push: { particles_nb: 4 },
-          repulse: { distance: 180, duration: 0.4 },
+          grab: { distance: 200, line_linked: { opacity: 1 } },
+          push: { particles_nb: 6 },
         },
       },
       retina_detect: true,
     });
+
   }, []);
 
   useEffect(() => {
@@ -74,25 +57,16 @@ export default function Particles() {
 
     script.onload = () => {
       const html = document.documentElement;
-      const detectDark = () =>
-        html.classList.contains("dark") ||
-        html.getAttribute("data-theme") === "dark";
+      const detectDark = () => html.getAttribute("data-theme") === "dark";
 
       initParticles(detectDark());
 
-      const observer = new MutationObserver(() =>
-        initParticles(detectDark())
-      );
-      observer.observe(html, {
-        attributes: true,
-        attributeFilter: ["class", "data-theme"],
-      });
+      const observer = new MutationObserver(() => initParticles(detectDark()));
+      observer.observe(html, { attributes: true, attributeFilter: ["data-theme"] });
     };
 
     return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
+      if (document.body.contains(script)) document.body.removeChild(script);
     };
   }, [initParticles]);
 
@@ -101,11 +75,11 @@ export default function Particles() {
       id="particles-js"
       style={{
         position: "fixed",
-        top: 0,
-        left: 0,
+        top: 0, left: 0,
         width: "100%",
         height: "100%",
         zIndex: 0,
+        pointerEvents: "none",
       }}
     />
   );

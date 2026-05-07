@@ -57,12 +57,12 @@ export default function Home() {
   }, []);
 
   const publications = [
-    { type: "review", year: "2025", title: "Precision early cotton yield prediction in smallholder farms comparing agronomic, remote sensing, and hybrid approaches using statistical and machine learning methods", authors: ["Sen, S.", "Nesa, M. M.", "Rahman, M. F.", "Ashiquzzaman, M.", "Ahmmed, T.", "Tuhin, A. K.", "Islam, M. S.", "Abdullah, H.M."], journal: "Precision Agriculture (Under Review) — MS Thesis", link: null },
-    { type: "published", year: "2025", title: "Cotton Seedling Monitoring and Growth Stage Classification Integrating Deep Learning and Feature Engineering", authors: ["Abdullah, H. M.", "Islam, M.", "Islam, M. S.", "Sen, S.", "Tuhin, A. K.", "Arman, S. E.", "Hasan, M. M."], journal: "Smart Agricultural Technology, 101619", link: "#" },
+    { type: "published", year: "2026", title: "Statistical and Machine Learning Models for Early Cotton Yield Prediction Under Resource Gradient", authors: ["Sen, S.", "Nesa, M. M.", "Rahman, M. F.", "Ashiquzzaman, M.", "Ahmmed, T.", "Tuhin, A. K.", "Islam, M. S.", "Abdullah, H.M."], journal: "Smart Agricultural Technology, 102164", link: "https://doi.org/10.1016/j.atech.2026.102164" },
+    { type: "published", year: "2025", title: "Cotton Seedling Monitoring and Growth Stage Classification Integrating Deep Learning and Feature Engineering", authors: ["Abdullah, H. M.", "Islam, M.", "Islam, M. S.", "Sen, S.", "Tuhin, A. K.", "Arman, S. E.", "Hasan, M. M."], journal: "Smart Agricultural Technology, 101619", link: "https://doi.org/10.1016/j.atech.2025.101619" },
     { type: "review", year: "2025", title: "Challenges of Unmanned Aerial Systems (UAS) in Crop Production", authors: ["Sen, S.", "Nesa, M. M.", "Ashiquzzaman, M.", "Tuhin, A. K."], journal: "UAV Applications in Natural Resources, Springer (Under Review)", link: null },
-    { type: "published", year: "2025", title: "Heat and Drought Induced Yield Loss Quantification of Wheat: Predicted from UAV-based Phenological Parameters", authors: ["Tuhin, A. K.", "Abdullah, H. M.", "Rahman, M. F.", "Ashiquzzaman, M.", "Islam, M. R.", "Sen, S.", "Nesa, M. M."], journal: "Smart Agricultural Technology, 101487", link: "#" },
-    { type: "published", year: "2025", title: "Unmanned Aerial Vehicle in Optimizing Nitrogen Fertilizer Use and Estimating Yield of Two Okra Varieties", authors: ["Ahmmed, T.", "Abdullah, H. M.", "Rahman, M. F.", "Sen, S.", "Ashiquzzaman, M.", "Sadia, N. J.", "Tuhin, A. K."], journal: "Smart Agricultural Technology, 101522", link: "#" },
-    { type: "book", year: "2024", title: "Land Use Change and Soil Erosion: Challenges and Way Forward to Management", authors: ["Nesa, M.M.", "Propa, S.M.", "Sen, S.", "Abdullah, H.M."], journal: "Climate Change and Soil-Water-Plant Nexus, Springer, Singapore", link: "#" },
+    { type: "published", year: "2025", title: "Heat and Drought Induced Yield Loss Quantification of Wheat: Predicted from UAV-based Phenological Parameters", authors: ["Tuhin, A. K.", "Abdullah, H. M.", "Rahman, M. F.", "Ashiquzzaman, M.", "Islam, M. R.", "Sen, S.", "Nesa, M. M."], journal: "Smart Agricultural Technology, 101487", link: "https://doi.org/10.1016/j.atech.2025.101487" },
+    { type: "published", year: "2025", title: "Unmanned Aerial Vehicle in Optimizing Nitrogen Fertilizer Use and Estimating Yield of Two Okra Varieties", authors: ["Ahmmed, T.", "Abdullah, H. M.", "Rahman, M. F.", "Sen, S.", "Ashiquzzaman, M.", "Sadia, N. J.", "Tuhin, A. K."], journal: "Smart Agricultural Technology, 101522", link: "https://doi.org/10.1016/j.atech.2025.101522" },
+    { type: "book", year: "2024", title: "Land Use Change and Soil Erosion: Challenges and Way Forward to Management", authors: ["Nesa, M.M.", "Propa, S.M.", "Sen, S.", "Abdullah, H.M."], journal: "Climate Change and Soil-Water-Plant Nexus, Springer, Singapore", link: "https://link.springer.com/chapter/10.1007/978-981-97-6635-2_18" },
   ];
 
   const filtered = activeFilter === "all" ? publications : publications.filter((p) => p.type === activeFilter);
@@ -180,7 +180,7 @@ export default function Home() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1.6fr", gap: "4rem", alignItems: "start" }}>
             <div style={{ background: "var(--card)", border: "1px solid var(--card-border)", borderRadius: "16px", aspectRatio: "3/4", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: "1rem", color: "var(--text3)" }}>
               <img
-              src="/photo.jpg"
+              src="./photo.jpg"
               alt="Sudip Sen"
               style={{
               width: "100%",
@@ -192,10 +192,9 @@ export default function Home() {
             </div>
             <div>
               {[
-                "I am a researcher specializing in GIS, Remote Sensing, and Precision Agriculture at the GIS & Remote Sensing Laboratory, Gazipur Agricultural University (GAU), Bangladesh.",
-                "My M.Sc. thesis focused on precision early cotton yield prediction in smallholder farms, comparing agronomic, remote sensing, and hybrid approaches — currently under review at Precision Agriculture journal.",
-                "I have collaborated with globally renowned institutions including Yale School of the Environment and the International Rice Research Institute (IRRI). I am also a National Science and Technology Fellowship recipient.",
-                "Beyond research, I have a deep passion for music, art, and mentoring students. I am an award-winning musician and national art competition awardee.",
+                "I am a Remote Sensing Scientist and Precision Agriculture Researcher at the GIS & Remote Sensing Lab, Gazipur Agricultural University. My work focuses on developing AI-driven solutions for smallholder farming systems by integrating UAV-derived multimodal data, including multispectral and LiDAR sensors.",
+                "I have successfully developed SeedlingNet, a deep-learning framework for high-throughput phenotyping, and have collaborated on international research projects with the Yale School of the Environment and the International Rice Research Institute (IRRI). As a National Science and Technology Fellow, I am dedicated to advancing Open Science and bridging the data gap for resource-constrained agricultural regions.",
+                "Outside the laboratory, I love art and music, bringing a unique perspective to scientific visualization and student mentorship."
               ].map((p, i) => (
                 <p key={i} style={{ color: "var(--text2)", marginBottom: "1.2rem", lineHeight: 1.9, fontSize: "0.97rem" }}>{p}</p>
               ))}
@@ -219,7 +218,6 @@ export default function Home() {
             {[
               { year: "2023–2025", title: "Master of Science in Agroforestry & Environment", sub: "Gazipur Agricultural University (GAU), Bangladesh", meta: "CGPA: 3.99 / 4.00 🏆" },
               { year: "2018–2022", title: "Bachelor of Science in Agriculture", sub: "Gazipur Agricultural University (GAU), Bangladesh", meta: "CGPA: 3.77 / 4.00" },
-              { year: "Oct 2, 2024", title: "TOEFL iBT — English Proficiency", sub: "ETS (Educational Testing Service)", meta: "Score: 96 | Reading: 27 | Listening: 24 | Speaking: 21 | Writing: 24" },
             ].map((item, i) => (
               <div key={i} style={{ ...styles.card, position: "relative" }}>
                 <div style={{ position: "absolute", left: "-2.55rem", top: "1.75rem", width: "12px", height: "12px", background: accent, borderRadius: "50%", border: "3px solid var(--background)" }}></div>
@@ -352,10 +350,7 @@ export default function Home() {
               ))}
             </div>
             <div>
-              <p style={{ fontSize: "0.82rem", color: "var(--text3)", marginBottom: "1rem" }}>
-                💡 Sign up free at <strong>formspree.io</strong> and replace YOUR_FORM_ID to enable this form.
-              </p>
-              <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+              <form action="https://formspree.io/f/xjgjrwrl" method="POST" style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                   {[["Name","name","Your name"],["Email","email","your@email.com"]].map(([label, name, ph]) => (
                     <div key={String(name)}>
