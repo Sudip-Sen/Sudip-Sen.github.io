@@ -179,8 +179,16 @@ export default function Home() {
           <div style={{ width: "48px", height: "3px", background: accent, borderRadius: "2px", marginBottom: "3rem" }}></div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1.6fr", gap: "4rem", alignItems: "start" }}>
             <div style={{ background: "var(--card)", border: "1px solid var(--card-border)", borderRadius: "16px", aspectRatio: "3/4", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: "1rem", color: "var(--text3)" }}>
-              <div style={{ fontSize: "4rem" }}>🧑‍🔬</div>
-              <p style={{ fontSize: "0.8rem", textAlign: "center", padding: "0 1rem" }}>Add your photo here<br /><span style={{ fontSize: "0.72rem" }}>(see instructions)</span></p>
+              <img
+              src="/photo.jpg"
+              alt="Sudip Sen"
+              style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              borderRadius: "16px",
+              }}
+              />
             </div>
             <div>
               {[
