@@ -63,7 +63,7 @@ export default function Home() {
 }, []);
 
 useEffect(() => {
-  const sections = ["home","about","education","publications","experience","skills","gallery","contact"];
+  const sections = ["home","about","education","publications","experience","gallery","contact"];
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -122,7 +122,7 @@ useEffect(() => {
 
 {/* RIGHT SIDE VERTICAL NAV */}
 <nav style={{ position: "fixed", right: "2rem", top: "50%", transform: "translateY(-50%)", zIndex: 100, display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "1.5rem" }} className="side-nav">
-  {[["home","Home"],["about","About"],["education","Education"],["publications","Publications"],["experience","Experience"],["skills","Skills"],["gallery","Gallery"],["contact","Contact"]].map(([id, label]) => {
+  {[["home","Home"],["about","About"],["education","Education"],["publications","Publications"],["experience","Experience"],["gallery","Gallery"],["contact","Contact"]].map(([id, label]) => {
     const isActive = activeSection === id;
     return (
       <a key={id} href={"#"+id}
@@ -148,7 +148,7 @@ useEffect(() => {
 {/* MOBILE MENU */}
 {menuOpen && (
   <div style={{ position: "fixed", top: "64px", left: 0, right: 0, background: "rgba(10,15,13,0.98)", backdropFilter: "blur(20px)", padding: "1.5rem 2rem", borderBottom: "1px solid var(--card-border)", zIndex: 99, display: "flex", flexDirection: "column", gap: "1.2rem" }}>
-    {["home","about","education","publications","experience","skills","gallery","contact"].map(s => (
+    {["home","about","education","publications","experience","gallery","contact"].map(s => (
       <a key={s} href={"#"+s} onClick={() => setMenuOpen(false)}
         style={{ color: activeSection === s ? accent : "var(--text2)", fontSize: "0.9rem", textDecoration: "none", fontWeight: 500, textTransform: "capitalize" }}>
         {s.charAt(0).toUpperCase() + s.slice(1)}
