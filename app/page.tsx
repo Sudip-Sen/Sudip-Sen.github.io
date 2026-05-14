@@ -156,7 +156,7 @@ useEffect(() => {
 
       {/* HERO */}
       <section id="home" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "6rem 2.5rem 3rem", position: "relative", zIndex: 1 }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto", width: "100%", paddingRight: "120px" }}>
           <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 340px", gap: "4rem", alignItems: "center" }}>
 
             {/* LEFT */}
