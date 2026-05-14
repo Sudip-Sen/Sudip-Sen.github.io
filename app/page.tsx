@@ -14,7 +14,7 @@ const socials = [
 
 const updates = [
   { date: "May 7, 2026", text: "Launched my personal academic portfolio website at sudip-sen.github.io" },
-  { date: "May 1, 2026", text: "First-authored paper on precision early cotton yield prediction published — MS Thesis work accepted in Precision Agriculture journal!" },
+  { date: "May 1, 2026", text: "First-authored MS Thesis paper on precision early cotton yield prediction accepted and published in Precision Agriculture journal!" },
 ];
 
 const publications = [
@@ -27,33 +27,14 @@ const publications = [
 ];
 
 const skillGroups = [
-  {
-    title: "🛰️ Remote Sensing & GIS",
-    skills: ["ArcGIS Pro", "QGIS", "Google Earth Engine", "ENVI", "Pix4Dmapper", "DJI Terra"],
-  },
-  {
-    title: "🚁 UAV / Drone",
-    skills: ["DJI Matrice 350 RTK", "L2 LiDAR Sensor", "Flight Planning", "Multispectral Imaging", "Point Cloud Processing"],
-  },
-  {
-    title: "💻 Programming",
-    skills: ["Python", "R", "JavaScript", "Git / GitHub", "Jupyter Notebooks"],
-  },
-  {
-    title: "🤖 Machine Learning & AI",
-    skills: ["Random Forest", "Support Vector Machine", "Deep Learning", "Feature Engineering", "Regression Models"],
-  },
-  {
-    title: "🌾 Agricultural Science",
-    skills: ["Precision Agriculture", "Crop Yield Prediction", "Plant Phenotyping", "Soil Analysis", "Cotton & Wheat Research"],
-  },
-  {
-    title: "🛠️ Other Tools",
-    skills: ["Adobe Illustrator", "Microsoft Office", "Survey Design", "Field Data Collection"],
-  },
+  { title: "🛰️ Remote Sensing & GIS", skills: ["ArcGIS Pro", "QGIS", "Google Earth Engine", "ENVI", "Pix4Dmapper", "DJI Terra"] },
+  { title: "🚁 UAV / Drone", skills: ["DJI Matrice 350 RTK", "L2 LiDAR Sensor", "Flight Planning", "Multispectral Imaging", "Point Cloud Processing"] },
+  { title: "💻 Programming", skills: ["Python", "R", "JavaScript", "Git / GitHub", "Jupyter Notebooks"] },
+  { title: "🤖 Machine Learning & AI", skills: ["Random Forest", "Support Vector Machine", "Deep Learning", "Feature Engineering", "Regression Models"] },
+  { title: "🌾 Agricultural Science", skills: ["Precision Agriculture", "Crop Yield Prediction", "Plant Phenotyping", "Soil Analysis", "Cotton & Wheat Research"] },
+  { title: "🛠️ Other Tools", skills: ["Adobe Illustrator", "Microsoft Office", "Survey Design", "Field Data Collection"] },
 ];
 
-// Gallery photos — add your own photo filenames here later
 const galleryPhotos = [
   { src: "/gallery/photo1.jpg", caption: "UAV field operation" },
   { src: "/gallery/photo2.jpg", caption: "Lab work" },
@@ -63,8 +44,9 @@ const galleryPhotos = [
   { src: "/gallery/photo6.jpg", caption: "Yale collaboration fieldwork" },
 ];
 
+const accent = "#4ade80";
+
 export default function Home() {
-  const [theme, setTheme] = useState("dark");
   const [menuOpen, setMenuOpen] = useState(false);
   const [typedText, setTypedText] = useState("");
   const [activeFilter, setActiveFilter] = useState("all");
@@ -72,8 +54,8 @@ export default function Home() {
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
+    document.documentElement.setAttribute("data-theme", "dark");
+  }, []);
 
   useEffect(() => {
     const phrases = [
@@ -102,12 +84,7 @@ export default function Home() {
   }, []);
 
   const filtered = activeFilter === "all" ? publications : publications.filter((p) => p.type === activeFilter);
-  const isDark = theme === "dark";
-  const accent = isDark ? "#4ade80" : "#16a34a";
-  const navBg = isDark ? "rgba(10,15,13,0.92)" : "rgba(245,249,246,0.92)";
-  const sectionAltBg = isDark ? "rgba(15,23,18,0.75)" : "rgba(237,244,239,0.75)";
-
-  const navLinks = ["home", "updates", "about", "education", "publications", "experience", "skills", "gallery", "contact"];
+  const sectionAltBg = "rgba(15,23,18,0.75)";
 
   return (
     <>
@@ -115,42 +92,35 @@ export default function Home() {
 
       {/* LIGHTBOX */}
       {lightboxImg && (
-        <div onClick={() => setLightboxImg(null)} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.9)", zIndex: 999, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
+        <div onClick={() => setLightboxImg(null)} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.92)", zIndex: 999, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
           <img src={lightboxImg} alt="Gallery" style={{ maxWidth: "90vw", maxHeight: "90vh", borderRadius: "12px", objectFit: "contain" }} />
         </div>
       )}
 
       {/* NAV */}
-      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: navBg, backdropFilter: "blur(20px)", borderBottom: "1px solid var(--card-border)", height: "64px", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 2rem" }}>
+      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: "rgba(10,15,13,0.92)", backdropFilter: "blur(20px)", borderBottom: "1px solid var(--card-border)", height: "64px", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 2.5rem" }}>
         <div style={{ fontFamily: "'DM Serif Display', serif", fontSize: "1.2rem", color: "var(--foreground)" }}>
           Sudip <span style={{ color: accent }}>Sen</span>
         </div>
-
-        {/* Desktop nav */}
-        <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
-          <div style={{ display: "flex", gap: "1.5rem", alignItems: "center" }} className="desktop-nav">
-            {["updates","about","education","publications","experience","skills","gallery","contact"].map(s => (
-              <a key={s} href={"#"+s} style={{ color: "var(--text2)", textTransform: "capitalize", fontSize: "0.85rem", letterSpacing: "0.02em", textDecoration: "none", fontWeight: 500, transition: "color 0.2s" }}
-                onMouseEnter={e => e.currentTarget.style.color = accent}
-                onMouseLeave={e => e.currentTarget.style.color = "var(--text2)"}>
-                {s === "updates" ? "Updates" : s.charAt(0).toUpperCase() + s.slice(1)}
-              </a>
-            ))}
-          </div>
-          <button onClick={() => setTheme(isDark ? "light" : "dark")}
-            style={{ background: "var(--card)", border: "1px solid var(--card-border)", color: "var(--foreground)", width: "36px", height: "36px", borderRadius: "50%", cursor: "pointer", fontSize: "1rem", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            {isDark ? "🌙" : "☀️"}
-          </button>
-          <button onClick={() => setMenuOpen(!menuOpen)} className="hamburger-btn"
-            style={{ background: "none", border: "none", cursor: "pointer", color: "var(--foreground)", fontSize: "1.4rem", display: "none" }}>☰</button>
+        <div className="desktop-nav" style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
+          {["about", "education", "publications", "experience", "skills", "gallery", "contact"].map(s => (
+            <a key={s} href={"#" + s}
+              style={{ color: "var(--text2)", fontSize: "0.82rem", letterSpacing: "0.04em", textDecoration: "none", fontWeight: 500, textTransform: "capitalize", transition: "color 0.2s" }}
+              onMouseEnter={e => e.currentTarget.style.color = accent}
+              onMouseLeave={e => e.currentTarget.style.color = "var(--text2)"}>
+              {s.charAt(0).toUpperCase() + s.slice(1)}
+            </a>
+          ))}
         </div>
+        <button onClick={() => setMenuOpen(!menuOpen)} className="hamburger-btn"
+          style={{ background: "none", border: "none", cursor: "pointer", color: "var(--foreground)", fontSize: "1.4rem", display: "none" }}>☰</button>
       </nav>
 
       {/* MOBILE MENU */}
       {menuOpen && (
-        <div style={{ position: "fixed", top: "64px", left: 0, right: 0, background: navBg, backdropFilter: "blur(20px)", padding: "1.5rem 2rem", borderBottom: "1px solid var(--card-border)", zIndex: 99, display: "flex", flexDirection: "column", gap: "1.2rem" }}>
-          {navLinks.map(s => (
-            <a key={s} href={"#"+s} onClick={() => setMenuOpen(false)}
+        <div style={{ position: "fixed", top: "64px", left: 0, right: 0, background: "rgba(10,15,13,0.98)", backdropFilter: "blur(20px)", padding: "1.5rem 2rem", borderBottom: "1px solid var(--card-border)", zIndex: 99, display: "flex", flexDirection: "column", gap: "1.2rem" }}>
+          {["about", "education", "publications", "experience", "skills", "gallery", "contact"].map(s => (
+            <a key={s} href={"#" + s} onClick={() => setMenuOpen(false)}
               style={{ color: "var(--text2)", fontSize: "0.9rem", textDecoration: "none", fontWeight: 500, textTransform: "capitalize" }}>
               {s.charAt(0).toUpperCase() + s.slice(1)}
             </a>
@@ -159,13 +129,15 @@ export default function Home() {
       )}
 
       {/* HERO */}
-      <section id="home" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "6rem 2rem 4rem", position: "relative", zIndex: 1 }}>
+      <section id="home" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "6rem 2.5rem 3rem", position: "relative", zIndex: 1 }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "4rem", alignItems: "center" }}>
+          <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 340px", gap: "4rem", alignItems: "center" }}>
+
+            {/* LEFT */}
             <div>
               <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "var(--accent-dim)", border: "1px solid var(--accent)", color: accent, fontSize: "0.73rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", padding: "0.4rem 1rem", borderRadius: "100px", marginBottom: "1.5rem" }}>
                 <span style={{ width: "6px", height: "6px", background: accent, borderRadius: "50%", display: "inline-block", animation: "pulse 2s infinite" }}></span>
-                Open to Collaborations
+                GIS &amp; Remote Sensing Researcher
               </div>
               <h1 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(3rem, 6vw, 5.5rem)", lineHeight: 1.05, marginBottom: "0.5rem", color: "var(--foreground)" }}>
                 Sudip<br /><span style={{ color: accent }}>Sen</span>
@@ -173,7 +145,7 @@ export default function Home() {
               <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: accent, marginBottom: "1.5rem", minHeight: "1.4rem" }}>
                 {typedText}<span style={{ display: "inline-block", width: "2px", height: "1em", background: accent, marginLeft: "2px", animation: "blink 1s infinite", verticalAlign: "middle" }}></span>
               </div>
-              <p style={{ fontSize: "1rem", color: "var(--text2)", lineHeight: 1.9, marginBottom: "2rem", maxWidth: "580px" }}>
+              <p style={{ fontSize: "1rem", color: "var(--text2)", lineHeight: 1.9, marginBottom: "2rem", maxWidth: "560px" }}>
                 Researcher at <strong style={{ color: "var(--foreground)" }}>Gazipur Agricultural University</strong> specializing in Precision Agriculture, Remote Sensing, and Machine Learning to advance sustainable food systems.
               </p>
               <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", marginBottom: "2rem" }}>
@@ -184,8 +156,6 @@ export default function Home() {
                   ✉️ Get In Touch
                 </a>
               </div>
-
-              {/* SOCIAL BUTTONS */}
               <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
                 {socials.map((s) => (
                   <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" title={s.name}
@@ -198,49 +168,35 @@ export default function Home() {
               </div>
             </div>
 
-            {/* HERO STATS CARD */}
-            <div style={{ background: "var(--card)", border: "1px solid var(--card-border)", borderRadius: "16px", padding: "2rem", minWidth: "200px", textAlign: "center" }} className="hero-card">
-              <div style={{ width: "80px", height: "80px", borderRadius: "50%", background: "var(--accent-dim)", border: `3px solid ${accent}`, margin: "0 auto 1rem", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'DM Serif Display',serif", fontSize: "1.8rem", color: accent }}>SS</div>
-              {[["6+", "Publications"], ["3.99", "M.Sc. CGPA"], ["96", "TOEFL Score"], ["5+", "Trainings"]].map(([num, label]) => (
-                <div key={label} style={{ padding: "0.75rem 0", borderTop: "1px solid var(--line)" }}>
-                  <div style={{ fontFamily: "'DM Serif Display',serif", fontSize: "1.6rem", color: accent, lineHeight: 1 }}>{num}</div>
-                  <div style={{ fontSize: "0.72rem", color: "var(--text3)", textTransform: "uppercase", letterSpacing: "0.05em", marginTop: "0.2rem" }}>{label}</div>
+            {/* RIGHT — Photo + Updates */}
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "2rem" }}>
+              <div style={{ width: "180px", height: "180px", borderRadius: "50%", border: "4px solid var(--accent)", overflow: "hidden", boxShadow: "0 0 40px rgba(74,222,128,0.2)", flexShrink: 0 }}>
+                <img src="/photo.jpg" alt="Sudip Sen" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              </div>
+              <div style={{ background: "var(--card)", border: "1px solid var(--card-border)", borderRadius: "16px", padding: "1.5rem", width: "100%" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.2rem" }}>
+                  <span style={{ width: "8px", height: "8px", background: accent, borderRadius: "50%", display: "inline-block", animation: "pulse 2s infinite" }}></span>
+                  <span style={{ fontSize: "0.72rem", fontWeight: 700, color: accent, textTransform: "uppercase", letterSpacing: "0.12em" }}>Recent Updates</span>
                 </div>
-              ))}
+                {updates.map((u, i) => (
+                  <div key={i} style={{ display: "flex", gap: "0.75rem", paddingBottom: i < updates.length - 1 ? "1rem" : 0, marginBottom: i < updates.length - 1 ? "1rem" : 0, borderBottom: i < updates.length - 1 ? "1px solid var(--line)" : "none" }}>
+                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.7rem", color: accent, whiteSpace: "nowrap", paddingTop: "0.15rem", minWidth: "75px" }}>{u.date}</div>
+                    <div style={{ fontSize: "0.82rem", color: "var(--text2)", lineHeight: 1.6 }}>{u.text}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* RECENT UPDATES */}
-      <section id="updates" style={{ padding: "5rem 2rem", background: sectionAltBg, position: "relative", zIndex: 1 }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-          <div style={{ fontSize: "0.75rem", fontFamily: "'JetBrains Mono',monospace", color: accent, textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "0.75rem" }}>// Recent Updates</div>
-          <h2 style={{ fontFamily: "'DM Serif Display',serif", fontSize: "clamp(2rem,4vw,2.8rem)", marginBottom: "1rem" }}>Latest News</h2>
-          <div style={{ width: "48px", height: "3px", background: accent, borderRadius: "2px", marginBottom: "2.5rem" }}></div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            {updates.map((u, i) => (
-              <div key={i} style={{ background: "var(--card)", border: "1px solid var(--card-border)", borderLeft: `4px solid ${accent}`, borderRadius: "8px", padding: "1.25rem 1.5rem", display: "flex", gap: "1.5rem", alignItems: "flex-start" }}>
-                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.78rem", color: accent, whiteSpace: "nowrap", paddingTop: "0.1rem", minWidth: "100px" }}>{u.date}</div>
-                <div style={{ fontSize: "0.92rem", color: "var(--text2)", lineHeight: 1.7 }}>{u.text}</div>
-              </div>
-            ))}
-          </div>
-          <div style={{ marginTop: "1.5rem" }}>
-            <a href="#publications" style={{ color: accent, fontSize: "0.88rem", fontWeight: 600, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
-              See All Publications →
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* ABOUT */}
-      <section id="about" style={{ padding: "5rem 2rem", position: "relative", zIndex: 1 }}>
+      <section id="about" style={{ padding: "5rem 2.5rem", background: sectionAltBg, position: "relative", zIndex: 1 }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <div style={{ fontSize: "0.75rem", fontFamily: "'JetBrains Mono',monospace", color: accent, textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "0.75rem" }}>// 01. About</div>
           <h2 style={{ fontFamily: "'DM Serif Display',serif", fontSize: "clamp(2rem,4vw,2.8rem)", marginBottom: "1rem" }}>About Me</h2>
           <div style={{ width: "48px", height: "3px", background: accent, borderRadius: "2px", marginBottom: "3rem" }}></div>
-          <div style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: "4rem", alignItems: "start" }}>
+          <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "260px 1fr", gap: "4rem", alignItems: "start" }}>
             <div>
               <div style={{ background: "var(--card)", border: "1px solid var(--card-border)", borderRadius: "16px", overflow: "hidden", marginBottom: "1.5rem" }}>
                 <img src="/photo.jpg" alt="Sudip Sen" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", display: "block" }} />
@@ -252,7 +208,7 @@ export default function Home() {
                   { icon: "✉️", label: "Email", value: "sudipsen4534@gmail.com" },
                 ].map((item, i) => (
                   <div key={i} style={{ display: "flex", gap: "0.75rem", padding: "0.6rem 0", borderBottom: i < 2 ? "1px solid var(--line)" : "none" }}>
-                    <span style={{ fontSize: "1rem" }}>{item.icon}</span>
+                    <span>{item.icon}</span>
                     <div>
                       <div style={{ fontSize: "0.7rem", color: "var(--text3)", textTransform: "uppercase", letterSpacing: "0.05em" }}>{item.label}</div>
                       <div style={{ fontSize: "0.82rem", color: "var(--text2)", marginTop: "0.1rem" }}>{item.value}</div>
@@ -283,36 +239,53 @@ export default function Home() {
         </div>
       </section>
 
-      {/* EDUCATION */}
-      <section id="education" style={{ padding: "5rem 2rem", background: sectionAltBg, position: "relative", zIndex: 1 }}>
+      {/* EDUCATION + SKILLS SIDE BY SIDE */}
+      <section id="education" style={{ padding: "5rem 2.5rem", position: "relative", zIndex: 1 }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-          <div style={{ fontSize: "0.75rem", fontFamily: "'JetBrains Mono',monospace", color: accent, textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "0.75rem" }}>// 02. Education</div>
-          <h2 style={{ fontFamily: "'DM Serif Display',serif", fontSize: "clamp(2rem,4vw,2.8rem)", marginBottom: "1rem" }}>Academic Background</h2>
+          <div style={{ fontSize: "0.75rem", fontFamily: "'JetBrains Mono',monospace", color: accent, textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "0.75rem" }}>// 02. Education & Skills</div>
+          <h2 style={{ fontFamily: "'DM Serif Display',serif", fontSize: "clamp(2rem,4vw,2.8rem)", marginBottom: "1rem" }}>Education &amp; Technical Skills</h2>
           <div style={{ width: "48px", height: "3px", background: accent, borderRadius: "2px", marginBottom: "3rem" }}></div>
-          <div style={{ position: "relative", paddingLeft: "2rem", borderLeft: "2px solid var(--line)" }}>
-            {[
-              { year: "2023–2025", degree: "Master of Science in Agroforestry & Environment", icon: "🎓", school: "Gazipur Agricultural University (GAU), Bangladesh", meta: "CGPA: 3.99 / 4.00 · Outstanding Academic Excellence 🏆" },
-              { year: "2018–2022", degree: "Bachelor of Science in Agriculture", icon: "🎓", school: "Gazipur Agricultural University (GAU), Bangladesh", meta: "CGPA: 3.77 / 4.00" },
-              { year: "Oct 2024", degree: "TOEFL iBT — English Proficiency", icon: "📜", school: "ETS (Educational Testing Service)", meta: "Score: 96 · Reading: 27 · Listening: 24 · Speaking: 21 · Writing: 24" },
-            ].map((item, i) => (
-              <div key={i} style={{ background: "var(--card)", border: "1px solid var(--card-border)", borderRadius: "12px", padding: "1.5rem", marginBottom: "1.2rem", position: "relative" }}>
-                <div style={{ position: "absolute", left: "-2.55rem", top: "1.75rem", width: "12px", height: "12px", background: accent, borderRadius: "50%", border: "3px solid var(--background)" }}></div>
-                <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
-                  <div>
-                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.75rem", color: accent, marginBottom: "0.4rem" }}>{item.year}</div>
-                    <h3 style={{ fontFamily: "'DM Serif Display',serif", fontSize: "1.1rem", marginBottom: "0.3rem" }}>{item.icon} {item.degree}</h3>
-                    <div style={{ color: "var(--text2)", fontSize: "0.88rem", marginBottom: "0.4rem" }}>{item.school}</div>
-                    <div style={{ color: accent, fontSize: "0.82rem", fontWeight: 600 }}>{item.meta}</div>
-                  </div>
+          <div className="edu-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "start" }}>
+            <div>
+              <div style={{ fontSize: "0.78rem", fontWeight: 700, color: accent, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "1.5rem" }}>Education</div>
+              {[
+                { year: "2023–2025", degree: "M.Sc. in Agroforestry & Environment", icon: "🎓", school: "Gazipur Agricultural University, Bangladesh", meta: "CGPA: 3.99 / 4.00 · Outstanding Excellence 🏆" },
+                { year: "2018–2022", degree: "B.Sc. in Agriculture", icon: "🎓", school: "Gazipur Agricultural University, Bangladesh", meta: "CGPA: 3.77 / 4.00" },
+                { year: "Oct 2024", degree: "TOEFL iBT — English Proficiency", icon: "📜", school: "ETS (Educational Testing Service)", meta: "Score: 96 · R:27 · L:24 · S:21 · W:24" },
+              ].map((item, i) => (
+                <div key={i} style={{ background: "var(--card)", border: "1px solid var(--card-border)", borderRadius: "12px", padding: "1.25rem", marginBottom: "1rem", transition: "border-color 0.3s" }}
+                  onMouseEnter={e => e.currentTarget.style.borderColor = accent}
+                  onMouseLeave={e => e.currentTarget.style.borderColor = "var(--card-border)"}>
+                  <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.72rem", color: accent, marginBottom: "0.3rem" }}>{item.year}</div>
+                  <div style={{ fontWeight: 600, fontSize: "0.92rem", color: "var(--foreground)", marginBottom: "0.2rem" }}>{item.icon} {item.degree}</div>
+                  <div style={{ color: "var(--text2)", fontSize: "0.82rem", marginBottom: "0.3rem" }}>{item.school}</div>
+                  <div style={{ color: accent, fontSize: "0.78rem", fontWeight: 600 }}>{item.meta}</div>
                 </div>
+              ))}
+            </div>
+            <div id="skills">
+              <div style={{ fontSize: "0.78rem", fontWeight: 700, color: accent, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "1.5rem" }}>Technical Skills</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                {skillGroups.map((group, i) => (
+                  <div key={i} style={{ background: "var(--card)", border: "1px solid var(--card-border)", borderRadius: "12px", padding: "1.25rem", transition: "border-color 0.3s" }}
+                    onMouseEnter={e => e.currentTarget.style.borderColor = accent}
+                    onMouseLeave={e => e.currentTarget.style.borderColor = "var(--card-border)"}>
+                    <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "var(--foreground)", marginBottom: "0.75rem" }}>{group.title}</div>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+                      {group.skills.map(skill => (
+                        <span key={skill} style={{ background: "var(--accent-dim)", color: accent, border: "1px solid var(--accent)", padding: "0.25rem 0.7rem", borderRadius: "100px", fontSize: "0.75rem", fontWeight: 500 }}>{skill}</span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* PUBLICATIONS */}
-      <section id="publications" style={{ padding: "5rem 2rem", position: "relative", zIndex: 1 }}>
+      <section id="publications" style={{ padding: "5rem 2.5rem", background: sectionAltBg, position: "relative", zIndex: 1 }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <div style={{ fontSize: "0.75rem", fontFamily: "'JetBrains Mono',monospace", color: accent, textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "0.75rem" }}>// 03. Publications</div>
           <h2 style={{ fontFamily: "'DM Serif Display',serif", fontSize: "clamp(2rem,4vw,2.8rem)", marginBottom: "1rem" }}>Research Publications</h2>
@@ -320,16 +293,16 @@ export default function Home() {
           <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "2rem" }}>
             {[["all", "All (6)"], ["published", "Published"], ["review", "Under Review"], ["book", "Book Chapter"]].map(([val, label]) => (
               <button key={val} onClick={() => setActiveFilter(val)}
-                style={{ background: activeFilter === val ? accent : "var(--card)", color: activeFilter === val ? "#000" : "var(--text2)", border: "1px solid var(--card-border)", padding: "0.4rem 1.1rem", borderRadius: "100px", fontSize: "0.8rem", cursor: "pointer", fontWeight: activeFilter === val ? 600 : 400, transition: "all 0.2s" }}>
+                style={{ background: activeFilter === val ? accent : "var(--card)", color: activeFilter === val ? "#000" : "var(--text2)", border: "1px solid var(--card-border)", padding: "0.4rem 1.1rem", borderRadius: "100px", fontSize: "0.8rem", cursor: "pointer", fontWeight: activeFilter === val ? 600 : 400 }}>
                 {label}
               </button>
             ))}
           </div>
           <div style={{ display: "grid", gap: "1.2rem" }}>
             {filtered.map((pub, i) => (
-              <div key={i} style={{ background: "var(--card)", border: "1px solid var(--card-border)", borderRadius: "12px", padding: "1.5rem", transition: "border-color 0.3s" }}
-                onMouseEnter={e => e.currentTarget.style.borderColor = accent}
-                onMouseLeave={e => e.currentTarget.style.borderColor = "var(--card-border)"}>
+              <div key={i} style={{ background: "var(--card)", border: "1px solid var(--card-border)", borderRadius: "12px", padding: "1.5rem", transition: "border-color 0.3s, transform 0.2s" }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = accent; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--card-border)"; e.currentTarget.style.transform = "translateY(0)"; }}>
                 <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "1rem", marginBottom: "0.75rem" }}>
                   <span style={{ background: "var(--accent-dim)", color: accent, border: "1px solid var(--accent)", padding: "0.2rem 0.7rem", borderRadius: "100px", fontSize: "0.7rem", fontWeight: 600, textTransform: "uppercase", whiteSpace: "nowrap" }}>
                     {pub.type === "review" ? "Under Review" : pub.type === "book" ? "Book Chapter" : "Published"}
@@ -351,7 +324,7 @@ export default function Home() {
       </section>
 
       {/* EXPERIENCE */}
-      <section id="experience" style={{ padding: "5rem 2rem", background: sectionAltBg, position: "relative", zIndex: 1 }}>
+      <section id="experience" style={{ padding: "5rem 2.5rem", position: "relative", zIndex: 1 }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <div style={{ fontSize: "0.75rem", fontFamily: "'JetBrains Mono',monospace", color: accent, textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "0.75rem" }}>// 04. Experience</div>
           <h2 style={{ fontFamily: "'DM Serif Display',serif", fontSize: "clamp(2rem,4vw,2.8rem)", marginBottom: "1rem" }}>Professional Experience</h2>
@@ -377,66 +350,41 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SKILLS */}
-      <section id="skills" style={{ padding: "5rem 2rem", position: "relative", zIndex: 1 }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-          <div style={{ fontSize: "0.75rem", fontFamily: "'JetBrains Mono',monospace", color: accent, textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "0.75rem" }}>// 05. Skills</div>
-          <h2 style={{ fontFamily: "'DM Serif Display',serif", fontSize: "clamp(2rem,4vw,2.8rem)", marginBottom: "1rem" }}>Technical Skills</h2>
-          <div style={{ width: "48px", height: "3px", background: accent, borderRadius: "2px", marginBottom: "3rem" }}></div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.5rem" }}>
-            {skillGroups.map((group, i) => (
-              <div key={i} style={{ background: "var(--card)", border: "1px solid var(--card-border)", borderRadius: "12px", padding: "1.5rem", transition: "border-color 0.3s" }}
-                onMouseEnter={e => e.currentTarget.style.borderColor = accent}
-                onMouseLeave={e => e.currentTarget.style.borderColor = "var(--card-border)"}>
-                <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--foreground)", marginBottom: "1rem" }}>{group.title}</div>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
-                  {group.skills.map(skill => (
-                    <span key={skill} style={{ background: "var(--accent-dim)", color: accent, border: "1px solid var(--accent)", padding: "0.3rem 0.8rem", borderRadius: "100px", fontSize: "0.78rem", fontWeight: 500 }}>{skill}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* GALLERY */}
-      <section id="gallery" style={{ padding: "5rem 2rem", background: sectionAltBg, position: "relative", zIndex: 1 }}>
+      <section id="gallery" style={{ padding: "5rem 2.5rem", background: sectionAltBg, position: "relative", zIndex: 1 }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-          <div style={{ fontSize: "0.75rem", fontFamily: "'JetBrains Mono',monospace", color: accent, textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "0.75rem" }}>// 06. Gallery</div>
-          <h2 style={{ fontFamily: "'DM Serif Display',serif", fontSize: "clamp(2rem,4vw,2.8rem)", marginBottom: "0.5rem" }}>Field & Research Gallery</h2>
+          <div style={{ fontSize: "0.75rem", fontFamily: "'JetBrains Mono',monospace", color: accent, textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "0.75rem" }}>// 05. Gallery</div>
+          <h2 style={{ fontFamily: "'DM Serif Display',serif", fontSize: "clamp(2rem,4vw,2.8rem)", marginBottom: "0.5rem" }}>Field &amp; Research Gallery</h2>
           <p style={{ color: "var(--text2)", fontSize: "0.9rem", marginBottom: "1rem" }}>Field work, research outputs, and memorable moments.</p>
           <div style={{ width: "48px", height: "3px", background: accent, borderRadius: "2px", marginBottom: "3rem" }}></div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1.2rem" }}>
             {galleryPhotos.map((photo, i) => (
               <div key={i} onClick={() => setLightboxImg(photo.src)}
-                style={{ background: "var(--card)", border: "1px solid var(--card-border)", borderRadius: "12px", overflow: "hidden", cursor: "pointer", transition: "transform 0.3s, border-color 0.3s" }}
+                style={{ background: "var(--card)", border: "1px solid var(--card-border)", borderRadius: "12px", overflow: "hidden", cursor: "pointer", transition: "transform 0.3s, border-color 0.3s", position: "relative" }}
                 onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.borderColor = accent; }}
                 onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.borderColor = "var(--card-border)"; }}>
-                <div style={{ aspectRatio: "4/3", background: "var(--accent-dim)", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-                  <img src={photo.src} alt={photo.caption}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    onError={e => { (e.target as HTMLImageElement).style.display = "none"; }}
-                  />
+                <div style={{ aspectRatio: "4/3", background: "var(--accent-dim)", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", position: "relative" }}>
                   <div style={{ position: "absolute", fontSize: "2rem" }}>📷</div>
+                  <img src={photo.src} alt={photo.caption} style={{ width: "100%", height: "100%", objectFit: "cover", position: "relative", zIndex: 1 }}
+                    onError={e => { (e.target as HTMLImageElement).style.display = "none"; }} />
                 </div>
                 <div style={{ padding: "0.75rem 1rem", fontSize: "0.82rem", color: "var(--text2)", fontStyle: "italic" }}>{photo.caption}</div>
               </div>
             ))}
           </div>
           <p style={{ marginTop: "1.5rem", fontSize: "0.8rem", color: "var(--text3)" }}>
-            💡 To add your photos: save them in <code style={{ background: "var(--accent-dim)", color: accent, padding: "0.1rem 0.4rem", borderRadius: "4px" }}>public/gallery/</code> folder and update the filenames in the gallery section of page.tsx
+            💡 Add your photos to <code style={{ background: "var(--accent-dim)", color: accent, padding: "0.1rem 0.4rem", borderRadius: "4px" }}>public/gallery/</code> folder named photo1.jpg, photo2.jpg etc.
           </p>
         </div>
       </section>
 
       {/* CONTACT */}
-      <section id="contact" style={{ padding: "5rem 2rem", position: "relative", zIndex: 1 }}>
+      <section id="contact" style={{ padding: "5rem 2.5rem", position: "relative", zIndex: 1 }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-          <div style={{ fontSize: "0.75rem", fontFamily: "'JetBrains Mono',monospace", color: accent, textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "0.75rem" }}>// 07. Contact</div>
+          <div style={{ fontSize: "0.75rem", fontFamily: "'JetBrains Mono',monospace", color: accent, textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "0.75rem" }}>// 06. Contact</div>
           <h2 style={{ fontFamily: "'DM Serif Display',serif", fontSize: "clamp(2rem,4vw,2.8rem)", marginBottom: "1rem" }}>Get In Touch</h2>
           <div style={{ width: "48px", height: "3px", background: accent, borderRadius: "2px", marginBottom: "3rem" }}></div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "start" }}>
+          <div className="contact-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "start" }}>
             <div>
               <p style={{ color: "var(--text2)", marginBottom: "2rem", lineHeight: 1.9, fontSize: "0.96rem" }}>
                 Open to research collaborations, PhD opportunities, speaking invitations, and academic discussions. Feel free to reach out!
@@ -459,8 +407,8 @@ export default function Home() {
               ))}
             </div>
             <div>
-              <p style={{ fontSize: "0.82rem", color: "var(--text3)", marginBottom: "1.2rem", background: "var(--accent-dim)", padding: "0.75rem 1rem", borderRadius: "8px", borderLeft: `3px solid ${accent}` }}>
-                💡 Sign up free at <strong>formspree.io</strong> → create a form → replace <code>YOUR_FORM_ID</code> below to activate this form.
+              <p style={{ fontSize: "0.82rem", color: "var(--text3)", marginBottom: "1.2rem", background: "var(--accent-dim)", padding: "0.75rem 1rem", borderRadius: "8px", borderLeft: "3px solid var(--accent)" }}>
+                💡 Sign up free at <strong>formspree.io</strong> and replace <code>YOUR_FORM_ID</code> to activate this form.
               </p>
               <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
@@ -489,21 +437,24 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer style={{ background: isDark ? "#0a0f0d" : "#e4efe7", borderTop: "1px solid var(--line)", padding: "2.5rem 2rem", textAlign: "center", color: "var(--text3)", fontSize: "0.85rem", position: "relative", zIndex: 1 }}>
+      <footer style={{ background: "#0a0f0d", borderTop: "1px solid var(--line)", padding: "2.5rem 2rem", textAlign: "center", color: "var(--text3)", fontSize: "0.85rem", position: "relative", zIndex: 1 }}>
         <div style={{ fontFamily: "'DM Serif Display',serif", fontSize: "1.2rem", color: accent, marginBottom: "0.5rem" }}>Sudip Sen</div>
-        <p>GIS & Remote Sensing Researcher · Gazipur Agricultural University, Bangladesh</p>
+        <p>GIS &amp; Remote Sensing Researcher · Gazipur Agricultural University, Bangladesh</p>
         <p style={{ marginTop: "0.5rem", fontSize: "0.75rem" }}>© 2025–2026 · Built with Next.js · Hosted on GitHub Pages</p>
       </footer>
 
       <style>{`
         @keyframes blink { 0%,50%{opacity:1} 51%,100%{opacity:0} }
         @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,0.4)} 50%{box-shadow:0 0 0 6px rgba(74,222,128,0)} }
-        @media(max-width:768px){
+        @media(max-width:900px){
+          .hero-grid { grid-template-columns: 1fr !important; }
+          .about-grid { grid-template-columns: 1fr !important; }
+          .edu-grid { grid-template-columns: 1fr !important; }
+          .contact-grid { grid-template-columns: 1fr !important; }
           .desktop-nav { display: none !important; }
           .hamburger-btn { display: flex !important; }
-          .hero-card { display: none !important; }
         }
-        @media(min-width:769px){
+        @media(min-width:901px){
           .hamburger-btn { display: none !important; }
         }
       `}</style>
