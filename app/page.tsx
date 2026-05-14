@@ -287,7 +287,6 @@ useEffect(() => {
                   <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.72rem", color: accent, marginBottom: "0.3rem" }}>{item.year}</div>
                   <div style={{ fontWeight: 600, fontSize: "0.92rem", color: "var(--foreground)", marginBottom: "0.2rem" }}>{item.icon} {item.degree}</div>
                   <div style={{ color: "var(--text2)", fontSize: "0.82rem", marginBottom: "0.3rem" }}>{item.school}</div>
-                  <div style={{ color: accent, fontSize: "0.78rem", fontWeight: 600 }}>{item.meta}</div>
                 </div>
               ))}
             </div>
