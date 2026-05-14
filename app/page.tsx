@@ -228,7 +228,7 @@ useEffect(() => {
           <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "260px 1fr", gap: "4rem", alignItems: "start" }}>
             <div>
               <div style={{ background: "var(--card)", border: "1px solid var(--card-border)", borderRadius: "16px", overflow: "hidden", marginBottom: "1.5rem" }}>
-                <img src="/photo.jpg" alt="Sudip Sen" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", display: "block" }} />
+                <img src="/photo-about.jpg" alt="Sudip Sen" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", display: "block" }} />
               </div>
               <div style={{ background: "var(--card)", border: "1px solid var(--card-border)", borderRadius: "12px", padding: "1.25rem" }}>
                 {[
@@ -278,9 +278,8 @@ useEffect(() => {
             <div>
               <div style={{ fontSize: "0.78rem", fontWeight: 700, color: accent, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "1.5rem" }}>Education</div>
               {[
-                { year: "2023–2025", degree: "M.Sc. in Agroforestry & Environment", icon: "🎓", school: "Gazipur Agricultural University, Bangladesh", meta: "CGPA: 3.99 / 4.00 · Outstanding Excellence 🏆" },
-                { year: "2018–2022", degree: "B.Sc. in Agriculture", icon: "🎓", school: "Gazipur Agricultural University, Bangladesh", meta: "CGPA: 3.77 / 4.00" },
-                { year: "Oct 2024", degree: "TOEFL iBT — English Proficiency", icon: "📜", school: "ETS (Educational Testing Service)", meta: "Score: 96 · R:27 · L:24 · S:21 · W:24" },
+                { year: "2023–2025", degree: "M.Sc. in Agroforestry & Environment", icon: "🎓", school: "Gazipur Agricultural University, Bangladesh" },
+                { year: "2018–2022", degree: "B.Sc. in Agriculture", icon: "🎓", school: "Gazipur Agricultural University, Bangladesh" },
               ].map((item, i) => (
                 <div key={i} style={{ background: "var(--card)", border: "1px solid var(--card-border)", borderRadius: "12px", padding: "1.25rem", marginBottom: "1rem", transition: "border-color 0.3s" }}
                   onMouseEnter={e => e.currentTarget.style.borderColor = accent}
