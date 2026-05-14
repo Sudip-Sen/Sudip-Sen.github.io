@@ -58,9 +58,6 @@ export default function Home() {
     document.documentElement.setAttribute("data-theme", "dark");
   }, []);
 
-  useEffect(() => {
-  document.documentElement.setAttribute("data-theme", "dark");
-}, []);
 
 useEffect(() => {
   const sections = ["home","about","education","publications","experience","gallery","contact"];
@@ -200,7 +197,7 @@ useEffect(() => {
             {/* RIGHT — Photo + Updates */}
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "2rem" }}>
               <div style={{ width: "180px", height: "180px", borderRadius: "50%", border: "4px solid var(--accent)", overflow: "hidden", boxShadow: "0 0 40px rgba(74,222,128,0.2)", flexShrink: 0 }}>
-                <img src="/photo.jpg" alt="Sudip Sen" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src="/photo.jpeg" alt="Sudip Sen" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
               <div style={{ background: "var(--card)", border: "1px solid var(--card-border)", borderRadius: "16px", padding: "1.5rem", width: "100%" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.2rem" }}>
