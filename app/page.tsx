@@ -52,10 +52,33 @@ export default function Home() {
   const [activeFilter, setActiveFilter] = useState("all");
   const [hoveredSocial, setHoveredSocial] = useState<string | null>(null);
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", "dark");
   }, []);
+
+  useEffect(() => {
+  document.documentElement.setAttribute("data-theme", "dark");
+}, []);
+
+useEffect(() => {
+  const sections = ["home","about","education","publications","experience","skills","gallery","contact"];
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setActiveSection(entry.target.id);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+
+  return () => observer.disconnect();
+}, []);
 
   useEffect(() => {
     const phrases = [
@@ -99,18 +122,21 @@ export default function Home() {
 
 {/* RIGHT SIDE VERTICAL NAV */}
 <nav style={{ position: "fixed", right: "2rem", top: "50%", transform: "translateY(-50%)", zIndex: 100, display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "1.5rem" }} className="side-nav">
-  {[["home","Home"],["about","About"],["education","Education"],["publications","Publications"],["experience","Experience"],["skills","Skills"],["gallery","Gallery"],["contact","Contact"]].map(([id, label]) => (
-    <a key={id} href={"#"+id}
-      style={{ color: "var(--text3)", fontSize: "0.78rem", textDecoration: "none", fontWeight: 500, display: "flex", alignItems: "center", gap: "0.5rem", transition: "color 0.2s" }}
-      onMouseEnter={e => e.currentTarget.style.color = accent}
-      onMouseLeave={e => e.currentTarget.style.color = "var(--text3)"}>
-      {label}
-      <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "var(--text3)", display: "inline-block", transition: "background 0.2s" }}></span>
-    </a>
-  ))}
+  {[["home","Home"],["about","About"],["education","Education"],["publications","Publications"],["experience","Experience"],["skills","Skills"],["gallery","Gallery"],["contact","Contact"]].map(([id, label]) => {
+    const isActive = activeSection === id;
+    return (
+      <a key={id} href={"#"+id}
+        style={{ color: isActive ? accent : "var(--text3)", fontSize: "0.78rem", textDecoration: "none", fontWeight: isActive ? 700 : 500, display: "flex", alignItems: "center", gap: "0.5rem", transition: "all 0.2s", textShadow: isActive ? `0 0 12px ${accent}` : "none" }}
+        onMouseEnter={e => { e.currentTarget.style.color = accent; e.currentTarget.style.textShadow = `0 0 12px ${accent}`; }}
+        onMouseLeave={e => { e.currentTarget.style.color = isActive ? accent : "var(--text3)"; e.currentTarget.style.textShadow = isActive ? `0 0 12px ${accent}` : "none"; }}>
+        {label}
+        <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: isActive ? accent : "var(--text3)", display: "inline-block", transition: "background 0.2s", boxShadow: isActive ? `0 0 8px ${accent}` : "none" }}></span>
+      </a>
+    );
+  })}
 </nav>
 
-{/* TOP BAR - just logo + mobile menu */}
+{/* TOP BAR - logo + mobile hamburger */}
 <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: "rgba(10,15,13,0.92)", backdropFilter: "blur(20px)", borderBottom: "1px solid var(--card-border)", height: "64px", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 2.5rem" }}>
   <div style={{ fontFamily: "'DM Serif Display', serif", fontSize: "1.2rem", color: "var(--foreground)" }}>
     Sudip <span style={{ color: accent }}>Sen</span>
@@ -119,17 +145,17 @@ export default function Home() {
     style={{ background: "none", border: "none", cursor: "pointer", color: "var(--foreground)", fontSize: "1.4rem" }}>☰</button>
 </div>
 
-      {/* MOBILE MENU */}
-      {menuOpen && (
-        <div style={{ position: "fixed", top: "64px", left: 0, right: 0, background: "rgba(10,15,13,0.98)", backdropFilter: "blur(20px)", padding: "1.5rem 2rem", borderBottom: "1px solid var(--card-border)", zIndex: 99, display: "flex", flexDirection: "column", gap: "1.2rem" }}>
-          {["about", "education", "publications", "experience", "skills", "gallery", "contact"].map(s => (
-            <a key={s} href={"#" + s} onClick={() => setMenuOpen(false)}
-              style={{ color: "var(--text2)", fontSize: "0.9rem", textDecoration: "none", fontWeight: 500, textTransform: "capitalize" }}>
-              {s.charAt(0).toUpperCase() + s.slice(1)}
-            </a>
-          ))}
-        </div>
-      )}
+{/* MOBILE MENU */}
+{menuOpen && (
+  <div style={{ position: "fixed", top: "64px", left: 0, right: 0, background: "rgba(10,15,13,0.98)", backdropFilter: "blur(20px)", padding: "1.5rem 2rem", borderBottom: "1px solid var(--card-border)", zIndex: 99, display: "flex", flexDirection: "column", gap: "1.2rem" }}>
+    {["home","about","education","publications","experience","skills","gallery","contact"].map(s => (
+      <a key={s} href={"#"+s} onClick={() => setMenuOpen(false)}
+        style={{ color: activeSection === s ? accent : "var(--text2)", fontSize: "0.9rem", textDecoration: "none", fontWeight: 500, textTransform: "capitalize" }}>
+        {s.charAt(0).toUpperCase() + s.slice(1)}
+      </a>
+    ))}
+  </div>
+)}
 
       {/* HERO */}
       <section id="home" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "6rem 2.5rem 3rem", position: "relative", zIndex: 1 }}>
