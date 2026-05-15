@@ -14,25 +14,23 @@ const socials = [
 
 const updates = [
   { date: "May 7, 2026", text: "Launched my personal academic portfolio website at sudip-sen.github.io" },
-  { date: "May 1, 2026", text: "First-authored MS Thesis paper on precision early cotton yield prediction accepted and published in Precision Agriculture journal!" },
+  { date: "May 1, 2026", text: "First-authored MS Thesis paper on precision early cotton yield prediction accepted and published in Smart Agricultural Technology journal!" },
 ];
 
 const publications = [
-  { type: "published", year: "2025", title: "Precision early cotton yield prediction in smallholder farms comparing agronomic, remote sensing, and hybrid approaches using statistical and machine learning methods", authors: ["Sen, S.", "Nesa, M. M.", "Rahman, M. F.", "Ashiquzzaman, M.", "Ahmmed, T.", "Tuhin, A. K.", "Islam, M. S.", "Abdullah, H.M."], journal: "Precision Agriculture", link: "#" },
-  { type: "published", year: "2025", title: "Cotton Seedling Monitoring and Growth Stage Classification Integrating Deep Learning and Feature Engineering", authors: ["Abdullah, H. M.", "Islam, M.", "Islam, M. S.", "Sen, S.", "Tuhin, A. K.", "Arman, S. E.", "Hasan, M. M."], journal: "Smart Agricultural Technology, 101619", link: "#" },
+  { type: "published", year: "2025", title: "Statistical and machine learning models for early cotton yield prediction under resource gradient", authors: ["Sen, S.", "Nesa, M. M.", "Rahman, M. F.", "Ashiquzzaman, M.", "Ahmmed, T.", "Tuhin, A. K.", "Islam, M. S.", "Abdullah, H.M."], journal: "Smart Agricultural Technology, 102164", link: "https://doi.org/10.1016/j.atech.2026.102164" },
+  { type: "published", year: "2025", title: "Cotton Seedling Monitoring and Growth Stage Classification Integrating Deep Learning and Feature Engineering", authors: ["Abdullah, H. M.", "Islam, M.", "Islam, M. S.", "Sen, S.", "Tuhin, A. K.", "Arman, S. E.", "Hasan, M. M."], journal: "Smart Agricultural Technology, 101619", link: "https://doi.org/10.1016/j.atech.2025.101619" },
   { type: "review", year: "2025", title: "Challenges of Unmanned Aerial Systems (UAS) in Crop Production", authors: ["Sen, S.", "Nesa, M. M.", "Ashiquzzaman, M.", "Tuhin, A. K."], journal: "UAV Applications in Natural Resources, Springer (Under Review)", link: null },
-  { type: "published", year: "2025", title: "Heat and Drought Induced Yield Loss Quantification of Wheat: Predicted from UAV-based Phenological Parameters", authors: ["Tuhin, A. K.", "Abdullah, H. M.", "Rahman, M. F.", "Ashiquzzaman, M.", "Islam, M. R.", "Sen, S.", "Nesa, M. M."], journal: "Smart Agricultural Technology, 101487", link: "#" },
-  { type: "published", year: "2025", title: "Unmanned Aerial Vehicle in Optimizing Nitrogen Fertilizer Use and Estimating Yield of Two Okra Varieties", authors: ["Ahmmed, T.", "Abdullah, H. M.", "Rahman, M. F.", "Sen, S.", "Ashiquzzaman, M.", "Sadia, N. J.", "Tuhin, A. K."], journal: "Smart Agricultural Technology, 101522", link: "#" },
-  { type: "book", year: "2024", title: "Land Use Change and Soil Erosion: Challenges and Way Forward to Management", authors: ["Nesa, M.M.", "Propa, S.M.", "Sen, S.", "Abdullah, H.M."], journal: "Climate Change and Soil-Water-Plant Nexus, Springer, Singapore", link: "#" },
+  { type: "published", year: "2025", title: "Heat and Drought Induced Yield Loss Quantification of Wheat: Predicted from UAV-based Phenological Parameters", authors: ["Tuhin, A. K.", "Abdullah, H. M.", "Rahman, M. F.", "Ashiquzzaman, M.", "Islam, M. R.", "Sen, S.", "Nesa, M. M."], journal: "Smart Agricultural Technology, 101487", link: "https://doi.org/10.1016/j.atech.2025.101487" },
+  { type: "published", year: "2025", title: "Unmanned Aerial Vehicle in Optimizing Nitrogen Fertilizer Use and Estimating Yield of Two Okra Varieties", authors: ["Ahmmed, T.", "Abdullah, H. M.", "Rahman, M. F.", "Sen, S.", "Ashiquzzaman, M.", "Sadia, N. J.", "Tuhin, A. K."], journal: "Smart Agricultural Technology, 101522", link: "https://doi.org/10.1016/j.atech.2025.101522" },
+  { type: "book", year: "2024", title: "Land Use Change and Soil Erosion: Challenges and Way Forward to Management", authors: ["Nesa, M.M.", "Propa, S.M.", "Sen, S.", "Abdullah, H.M."], journal: "Climate Change and Soil-Water-Plant Nexus, Springer, Singapore", link: "https://link.springer.com/chapter/10.1007/978-981-97-6635-2_18" },
 ];
 
 const skillGroups = [
-  { title: "🛰️ Remote Sensing & GIS", skills: ["ArcGIS Pro", "QGIS", "Google Earth Engine", "ENVI", "Pix4Dmapper", "DJI Terra"] },
-  { title: "🚁 UAV / Drone", skills: ["DJI Matrice 350 RTK", "L2 LiDAR Sensor", "Flight Planning", "Multispectral Imaging", "Point Cloud Processing"] },
-  { title: "💻 Programming", skills: ["Python", "R", "JavaScript", "Git / GitHub", "Jupyter Notebooks"] },
+  { title: "🛰️ Remote Sensing & GIS", skills: ["ArcGIS Pro", "QGIS", "Google Earth Engine", "Pix4Dmapper", "DJI Terra"] },
+  { title: "🚁 UAV / Drone", skills: ["DJI Matrice 350 RTK", "DJI Inspire 2", "DJI Phantom 4", "DJI Air 3S", "Flight Planning"] },
+  { title: "💻 Programming", skills: ["Python", "R", "Git / GitHub", "Jupyter Notebooks"] },
   { title: "🤖 Machine Learning & AI", skills: ["Random Forest", "Support Vector Machine", "Deep Learning", "Feature Engineering", "Regression Models"] },
-  { title: "🌾 Agricultural Science", skills: ["Precision Agriculture", "Crop Yield Prediction", "Plant Phenotyping", "Soil Analysis", "Cotton & Wheat Research"] },
-  { title: "🛠️ Other Tools", skills: ["Adobe Illustrator", "Microsoft Office", "Survey Design", "Field Data Collection"] },
 ];
 
 const galleryPhotos = [
